@@ -1,0 +1,14 @@
+table{
+  width: 300px;
+  border-collapse: collapse;
+  border-color: rgb(17, 11, 4);
+  }
+  tr{
+    background-color: rgb(142, 194, 196);
+    font-size: 20px;
+    border-color: rgb(14, 7, 4);
+  }
+  td{
+    border-color: black;
+    background-color: rgb(150, 178, 219);
+  }
