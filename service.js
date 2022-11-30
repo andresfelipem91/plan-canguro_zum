@@ -59,3 +59,58 @@ webApp.factory('saludoService',function(){
     }
     return saludoSvc;
 })
+webApp.factory('ComputadorService',function($http){
+    return {
+        getComputer: function(callbackWhenComputersAreBrought){
+            $http({
+                method: 'GET',
+                url: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a'
+            }).then(function(data){
+                callbackWhenComputersAreBrought(data.data.drinks);
+            })
+        },
+        addComputer:function(computerToAdd,callbackWhenComputersAreBrought){
+           console.log(computerToAdd)
+           $http.post('callbackWhenComputersAreBrought/create',JSON.stringify(computerToAdd)).then(function(data){
+            callbackWhenComputersAreBrought(data.data.drinks)
+                    })
+        },
+        updateComputer: function(computerUpdate, callbackWhenIsUpdateInBackend) {
+            console.log(computerUpdate)
+            $http.put('',JSON.stringify(computerUpdate)).then(function(data){
+                callbackWhenIsUpdateInBackend(data.data)
+            })
+        },
+        deleteComputer: function (computerId, callbackWhenIsDeletedInBackend) {
+            console.log("CARD ID ",computerId)
+                $http.delete(``,
+                {
+                    'Access-Control-Allow-Origin': '*',
+                }
+                ).then(function(response){
+                callbackWhenIsDeletedInBackend(response.data)
+            })
+        }
+    
+    }
+
+
+})
+webApp.service('fileUpload',function($http){
+    this.uploadFileToUrl=function(file, uploadUrl){
+        var fd = new FormData();
+        console.log(fd)
+        fd.append('file',file);
+
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers:{'Content-Type':undefined}
+        })
+        .success(function(){
+
+        })
+        .error(function(){
+            
+        })
+    }
+})

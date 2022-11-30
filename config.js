@@ -1,5 +1,5 @@
 //'use strict';
-var webApp = angular.module('webApp',['ui.router']);
+var webApp = angular.module('webApp',['ui.router','ui.bootstrap']);
 
 function config($stateProvider,$urlRouterProvider){
 $urlRouterProvider.otherwise('/index');
@@ -31,6 +31,16 @@ $urlRouterProvider.otherwise('/index');
   templateUrl:'View/fecha_hora.html',
   controller:'timeController'
  })
+ .state('computador',{
+  url:'/computador',
+   templateUrl:'View/computadores.html',
+   controller:'ComputadorasController'
+  })
+//.state('computadores',{
+//   url:'/computadores',
+//    templateUrl:'View/computadores.html',
+//    controller:'dialogController'
+//  })
 
 }
 webApp.config(config).run(function($rootScope, $state){
